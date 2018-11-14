@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<h1>Transaction Process Status</h1>
+
+<div style="width:70%">
+		<table class="table table-responsive table-hover" border="1"
+			width="450px">
+			<thead>
+				<tr>
+					<th>Reference</th>
+					<th>Account Number</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tr th:each="record: ${transactionList}">
+				<td th:text="${record.refNum}" />
+				<td th:text="${record.acctNum}" />
+				<td th:if="${record.success}">Success</td>
+				<td th:unless="${record.success}" class="bg-danger">Fail&nbsp;(<b th:text="${record.failureReason}" />)</td>
+				 
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
